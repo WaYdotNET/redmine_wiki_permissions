@@ -22,10 +22,10 @@
     <table class="edit_permissions_table">
     <thead>
     	<tr>
-    		<th>Can't see</th>
-    		<th>Can Read </th>
-    		<th>and Edit </th>
-    		<th>and Edit Permissions</th>
+    		<th><%= l(:permission_level_0) %></th>
+    		<th><%= l(:permission_level_1) %></th>
+    		<th><%= l(:permission_level_2) %></th>
+    		<th><%= l(:permission_level_3) %></th>
     	</tr>
     </thead>
     <tbody>
@@ -38,7 +38,7 @@
     </table>
     </td>
     <td align="center">
-      <%= link_to l(:button_delete), "#{root_path}wiki/#{@project.identifier}/#{@page.title}/destroy_wiki_page_user_permissions?permission_id=#{perm.id}", :class => 'icon icon-del' %>
+      <%= link_to l(:button_delete), {:action => :destroy_wiki_page_user_permissions, :permission_id => "#{perm.id}"}, :class => 'icon icon-del' %>
     </td>
     <%= call_hook(:view_projects_settings_members_table_row, { :project => @project, :member => perm}) %>
 	</tr>
@@ -46,7 +46,7 @@
 
 <% end; reset_cycle %>
 </table>
-  <input id="save-permissions" type="submit" value="Save">
+  <input id="save-permissions" type="submit" value=<%= l(:button_save) %>>
 <% end %>
 <% else %>
 <p class="nodata"><%= l(:label_no_data) %></p>
@@ -54,27 +54,27 @@
 
 <% if @page.members_without_permissions.size != 0 %>
 <fieldset id="add_private_permissions" class="box">
-  <legend>Add private permissions</legend>
+  <legend><%= l(:private_permissions_legend) %></legend>
   <% form_for :wiki_page_user_permission, :url => { :controller => "wiki", :action => "create_wiki_page_user_permissions" } do |f| %>
-  <label for="user-select">Select user</label>
+  <label for="user-select"><%= l(:select_permissions_user_label) %></label>
   <select id="user-select" name="wiki_page_user_permission[member_id]">
     <% @page.members_without_permissions.each do |member| %>
     <option value="<%= member.id %>"><%= member.name%></option>
     <% end %>
   </select>
   <input value="<%= @page.id %>" name="wiki_page_user_permission[wiki_page_id]" style="display: none;"/>
-  <label for="permission-select">Select permission</label>
+  <label for="permission-select"><%= l(:select_permissions_label) %></label>
   <select id="permission-select" name="wiki_page_user_permission[level]"> 
-    <option value="0">Can't see</option>
-    <option value="1">Can Read</option>
-    <option value="2">and Edit</option>
-    <option value="3">and Edit Permissions</option>
-    <input type="submit">    
+    <option value="0"><%= l(:permission_level_0) %></option>
+    <option value="1"><%= l(:permission_level_1) %></option>
+    <option value="2"><%= l(:permission_level_2) %></option>
+    <option value="3"><%= l(:permission_level_3) %></option>
+    <input type="submit" value=<%= l(:button_create) %>>    
   </select>
   <% end %>
 </fieldset>
 <% else -%>
-<%= "No users to adding permissions" -%>
+<%= l(:no_users_selected) -%>
 <% end -%>
 
 <style type="text/css" media="screen">
