@@ -3,3 +3,8 @@ de:
   permission_level_1: Lesen
   permission_level_2: Lesen und bearbeiten
   permission_level_3: Lesen, bearbeiten und Berechtigungen aendern
+  button_permissions: Berechtigungen
+  select_permissions_user_label: Nutzer auswaehlen
+  select_permissions_label: Berechtigung auswaehlen
+  private_permissions_legend: Private Berechtigung hinzufuegen
+  no_users_selected: Keine Nutzer ausgewaehlt

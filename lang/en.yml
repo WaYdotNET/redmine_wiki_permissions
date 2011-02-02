@@ -1,5 +1,10 @@
-
-permission_level_0: Can't see
-permission_level_1: Read
-permission_level_2: Read and Edit
-permission_level_3: Read and Edit and Edit Permissions
+en:
+  permission_level_0: Can't see
+  permission_level_1: Read
+  permission_level_2: Read and Edit
+  permission_level_3: Read and Edit and Edit Permissions
+  button_permissions: Permissions
+  select_permissions_user_label: Select user 
+  select_permissions_label: Select permission
+  private_permissions_legend: Add private permissions
+  no_users_selected: No users to adding permissions
