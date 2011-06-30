@@ -6,7 +6,7 @@
 				<%= link_to_if_authorized(l(:button_permissions) , {:action => 'permissions', :id => @page.title}, :class => 'icon icon-permissions') %>
 			<% end %>
 		<% end %>
-<% end %>
+	<% end %>
 <style type="text/css" media="screen">
   .icon-permissions {
     background-image: url(/images/user.png);
@@ -23,15 +23,17 @@
   }
 </style>
 
-<% if !User.current.object_id.nil? and (User.current.not_has_permission?(@page) or User.current.can_edit?(@page)) %>
-<%= link_to_if_authorized(l(:button_edit), {:action => 'edit', :id => @page.title}, :class => 'icon icon-edit', :accesskey => accesskey(:edit)) if @content.version == @page.content.version %>
-<% end %>
-<%= watcher_tag(@page, User.current) %>
-<%= link_to_if_authorized(l(:button_lock), {:action => 'protect', :id => @page.title, :protected => 1}, :method => :post, :class => 'icon icon-lock') if !@page.protected? %>
-<%= link_to_if_authorized(l(:button_unlock), {:action => 'protect', :id => @page.title, :protected => 0}, :method => :post, :class => 'icon icon-unlock') if @page.protected? %>
-<%= link_to_if_authorized(l(:button_rename), {:action => 'rename', :id => @page.title}, :class => 'icon icon-move') if @content.version == @page.content.version %>
-<%= link_to_if_authorized(l(:button_delete), {:action => 'destroy', :id => @page.title}, :method => :delete, :confirm => l(:text_are_you_sure), :class => 'icon icon-del') %>
-<%= link_to_if_authorized(l(:button_rollback), {:action => 'edit', :id => @page.title, :version => @content.version }, :class => 'icon icon-cancel') if @content.version < @page.content.version %>
+	<% if !User.current.object_id.nil? and (User.current.not_has_permission?(@page) or User.current.can_edit?(@page)) %>
+		<%= link_to_if_authorized(l(:button_edit), {:action => 'edit', :id => @page.title}, :class => 'icon icon-edit', :accesskey => accesskey(:edit)) if @content.version == @page.content.version %>
+	<% end %>
+	<%= watcher_tag(@page, User.current) %>
+	<% if !User.current.object_id.nil? and (User.current.not_has_permission?(@page) or User.current.can_edit?(@page)) %>
+		<%= link_to_if_authorized(l(:button_lock), {:action => 'protect', :id => @page.title, :protected => 1}, :method => :post, :class => 'icon icon-lock') if !@page.protected? %>
+		<%= link_to_if_authorized(l(:button_unlock), {:action => 'protect', :id => @page.title, :protected => 0}, :method => :post, :class => 'icon icon-unlock') if @page.protected? %>
+		<%= link_to_if_authorized(l(:button_rename), {:action => 'rename', :id => @page.title}, :class => 'icon icon-move') if @content.version == @page.content.version %>
+		<%= link_to_if_authorized(l(:button_delete), {:action => 'destroy', :id => @page.title}, :method => :delete, :confirm => l(:text_are_you_sure), :class => 'icon icon-del') %>
+		<%= link_to_if_authorized(l(:button_rollback), {:action => 'edit', :id => @page.title, :version => @content.version }, :class => 'icon icon-cancel') if @content.version < @page.content.version %>
+	<% end %>
 <% end %>
 <%= link_to_if_authorized(l(:label_history), {:action => 'history', :id => @page.title}, :class => 'icon icon-history') %>
 </div>
